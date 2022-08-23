@@ -1,0 +1,32 @@
+.card-header.daftar {
+  overflow: hidden;
+  height: 250px;
+  position: relative;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  background-image: url("https://cdn-2.tstatic.net/tribunnews/foto/bank/images/acg-school-jakarta.jpg");
+}
+
+.card-header.daftar .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: #fff;
+  opacity: 0.5;
+}
+
+.card-header.daftar h1 {
+  position: relative;
+  font-weight: 700;
+  color: #000;
+}
+
+.regist-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
