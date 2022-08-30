@@ -21,3 +21,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::get('/edit', [App\Http\Controllers\HomeController::class, 'edit'])->name('edit');
+
+// admin
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');

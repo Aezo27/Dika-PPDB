@@ -1,3 +1,7 @@
+body {
+  background: url("https://smpn1cikarangselatan.sch.id/wp-content/themes/Sakola/images/pattern.png");
+}
+
 .card-header.daftar {
   overflow: hidden;
   height: 250px;
@@ -6,6 +10,8 @@
   align-content: center;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  row-gap: 24px;
   background: #fff;
   background-image: url("https://cdn-2.tstatic.net/tribunnews/foto/bank/images/acg-school-jakarta.jpg");
 }
@@ -15,18 +21,33 @@
   height: 100%;
   position: absolute;
   top: 0;
-  background: #fff;
+  background: #000;
   opacity: 0.5;
 }
 
 .card-header.daftar h1 {
   position: relative;
   font-weight: 700;
-  color: #000;
+  color: #fff;
+  text-align: center;
 }
 
-.regist-form {
+.card-header.daftar img {
+  max-width: 100px;
+  position: relative;
+}
+
+.regist-form, .form-part {
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control{
+  text-transform: capitalize;
 }
