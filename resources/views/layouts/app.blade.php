@@ -3,12 +3,13 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <link rel="shortcut icon" href="{{ asset('assets/static/images/logo.png') }}" type="image/png">
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }} - SMP Negeri 1 Cikarang</title>
+  <title>{{ config('app.name', 'Laravel') }} - SMP Negeri 1 Cikarang Selatan</title>
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
@@ -37,7 +38,11 @@
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="https://smpn1cikarangselatan.sch.id/">Beranda</a>
+              @if (Auth::user()->role == 0)
+                <a class="nav-link" href="{{ route('admin') }}">Beranda</a>
+              @else
+                <a class="nav-link" href="https://smpn1cikarangselatan.sch.id/">Beranda</a>
+              @endif
             </li>
           </ul>
 
@@ -83,5 +88,7 @@
     </main>
   </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@stack('script')
 
 </html>

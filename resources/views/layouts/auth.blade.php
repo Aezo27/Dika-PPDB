@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-  <link rel="shortcut icon" href="{{asset('assets/static/images/logo.png')}}" type="image/png">
-  <title>PPDB SMPN 1 Cikarang Utara</title>
+  <link rel="shortcut icon" href="{{ asset('assets/static/images/logo.png') }}" type="image/png">
+  <title>PPDB SMPN 1 Cikarang Selatan</title>
   <style>
     #loader {
       transition: all .3s ease-in-out;
@@ -90,40 +90,33 @@
       }
     }
   </style>
-  <link href="{{asset('assets/style.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/style.css') }}" rel="stylesheet">
 </head>
 
 <body class="app">
   <div id="loader">
     <div class="spinner"></div>
   </div>
-  <script>
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      setTimeout(() => {
-        loader.classList.add('fadeOut');
-      }, 300);
-    });
-  </script>
   <div class="peers ai-s fxw-nw h-100vh">
     <div class="peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv">
       <div class="bg-vid-wrapper">
         <video autoplay muted loop id="bg-vid">
-          <source src="https://cdn.odama.io/taucan/Hexambit_yt_5sec.mp4" type="video/mp4">
+          <source src="{{ asset('storage/bgAuth.mp4') }}" type="video/mp4">
         </video>
       </div>
       <div class="overlay"></div>
       <div class="pos-a centerXY" style="z-index: 10">
         <div class="pos-r" style="width:180px;height:180px;margin:0 auto;">
-          <img class="pos-a centerXY" style="max-width: 150px;" src="{{asset('assets/static/images/logo.png')}}" alt="">
+          <img class="pos-a centerXY" style="max-width: 150px;" src="{{ asset('assets/static/images/logo.png') }}" alt="">
         </div>
         <h1 class="smp">SMP NEGERI 1 CIKARANG SELATAN</h1>
       </div>
     </div>
     @yield('content')
   </div>
-  <script type="text/javascript" src="{{asset('assets/vendor.js')}}"></script>
-  <script type="text/javascript" src="{{asset('assets/bundle.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('assets/vendor.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/bundle.js') }}"></script>
+  <link href="{{ asset('assets/custom.css') }}" rel="stylesheet">
   <script>
     const pass = document.querySelector('input[name="password"]');
     const confr = document.querySelector('input[name="password_confirmation"]');
@@ -142,5 +135,14 @@
       }
     }
   </script>
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+        loader.classList.add('fadeOut');
+      }, 300);
+    });
+  </script>
 </body>
+
 </html>
