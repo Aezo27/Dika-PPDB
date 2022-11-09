@@ -11,7 +11,7 @@
  Target Server Version : 100421
  File Encoding         : 65001
 
- Date: 25/10/2022 23:29:36
+ Date: 09/11/2022 13:09:04
 */
 
 SET NAMES utf8mb4;
@@ -74,7 +74,7 @@ CREATE TABLE `data_pesertas`  (
   `no_kis` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `warga_negara` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
   `negara_asal` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `foto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `foto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
