@@ -10,11 +10,11 @@
               <div class="card-header daftar">
                 <div class="overlay"></div>
                 <img src="{{ asset('assets/static/images/logo.png') }}" alt="logo-sekolah">
-                <h1>SMP Negeri 1 Cikarang Selatan</h1>
+                <h1>SMP Negeri 1 Cikarang Utara</h1>
               </div>
               <div class="card-body text-center">
                 <h1 style="font-weight: 700">SELAMAT ANDA DITERIMA</h1>
-                <p>Silahkan ke kantor SMP Negeri 1 Cikarang Selatan untuk menyelesaikan pendaftaran.</p>
+                <p>Silahkan ke kantor SMP Negeri 1 Cikarang Utara untuk menyelesaikan pendaftaran.</p>
               </div>
             </div>
           </div>
@@ -26,7 +26,7 @@
               <div class="card-header daftar">
                 <div class="overlay"></div>
                 <img src="{{ asset('assets/static/images/logo.png') }}" alt="logo-sekolah">
-                <h1>SMP Negeri 1 Cikarang Selatan</h1>
+                <h1>SMP Negeri 1 Cikarang Utara</h1>
               </div>
               <div class="card-body text-center">
                 <h1 style="font-weight: 700">PENDAFTARAN TELAH DITUTUP</h1>
@@ -42,7 +42,7 @@
               <div class="card-header daftar">
                 <div class="overlay"></div>
                 <img src="{{ asset('assets/static/images/logo.png') }}" alt="logo-sekolah">
-                <h1>SMP Negeri 1 Cikarang Selatan</h1>
+                <h1>SMP Negeri 1 Cikarang Utara</h1>
               </div>
               <div class="card-body text-center">
                 <h1 style="font-weight: 700">PENDAFTAR TELAH MELAMPAUI KUOTA</h1>
@@ -58,7 +58,7 @@
               <div class="card-header daftar">
                 <div class="overlay"></div>
                 <img src="{{ asset('assets/static/images/logo.png') }}" alt="logo-sekolah">
-                <h1>SMP Negeri 1 Cikarang Selatan</h1>
+                <h1>SMP Negeri 1 Cikarang Utara</h1>
               </div>
               <div class="card-body text-center">
                 <h1 style="font-weight: 700">Terima kasih telah melakukan pendaftaran</h1>
@@ -73,3 +73,24 @@
     </div>
   </div>
 @endsection
+@if (isset($cek_daftar) && $cek_daftar->draft == 0)
+  @push('script')
+    <script>
+      setInterval(() => {
+        console.log("Auto Save");
+        $values = $(".regist-form").serialize();
+        $.ajax({
+          url: "{{ route('add') }}/",
+          type: "post",
+          headers: {
+            "X-CSRF-TOKEN": $("[name='csrf-token']").attr("content")
+          },
+          data: $values,
+          success: function(response) {
+            console.log(response);
+          }
+        });
+      }, 60000);
+    </script>
+  @endpush
+@endif

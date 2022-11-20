@@ -9,7 +9,7 @@
         <input type="email" class="form-control {{ session('error') ? 'is-invalid' : '' }}" name="email" style="text-transform: none" required value="{{ old('email') }}" placeholder="nama@email.com">
         @if (session('error'))
           <span class="invalid-feedback" role="alert">
-            <strong>Email tidak terdaftar</strong>
+            <strong>Email atau password salah!</strong>
           </span>
         @endif
       </div>

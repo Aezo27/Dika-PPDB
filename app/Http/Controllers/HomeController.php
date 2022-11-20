@@ -171,7 +171,7 @@ class HomeController extends Controller
           function ($message) use ($req) {
             $message->from('smpn1cikarang@gmail.com');
             $message->to(Auth::user()->email);
-            $message->subject("PPDB SMP Negeri 1 Cikarang Selatan");
+            $message->subject("PPDB SMP Negeri 1 Cikarang Utara");
           }
         );
         return redirect(route("home"));

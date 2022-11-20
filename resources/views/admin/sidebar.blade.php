@@ -9,7 +9,7 @@
                 <div class="logo"><img style="width: 70%" src="{{ asset('assets/static/images/logo.png') }}" alt="" /></div>
               </div>
               <div class="peer peer-greed">
-                <h5 class="lh-1 mB-0 logo-text">SMPN 1 Cikarang Selatan</h5>
+                <h5 class="lh-1 mB-0 logo-text">SMPN 1 Cikarang Utara</h5>
               </div>
             </div>
           </a>

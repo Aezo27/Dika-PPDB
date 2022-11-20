@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <link rel="shortcut icon" href="{{ asset('assets/static/images/logo.png') }}" type="image/png">
-  <title>Dashboard PPDB SMPN 1 Cikarang Selatan</title>
+  <title>Dashboard PPDB SMPN 1 Cikarang Utara</title>
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">

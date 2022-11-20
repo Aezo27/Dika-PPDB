@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <link rel="shortcut icon" href="{{ asset('assets/static/images/logo.png') }}" type="image/png">
-  <title>PPDB SMPN 1 Cikarang Selatan</title>
+  <title>PPDB SMPN 1 Cikarang Utara</title>
   <style>
     #loader {
       transition: all .3s ease-in-out;

@@ -148,8 +148,8 @@
             <input type="text" class="form-control" name="dusun" id="dusun" value="{{ $data->dusun }}" placeholder="">
           </div>
           <div class="form-group">
-            <label class="text-normal text-dark" for="kelurahan">Kelurahan</label>
-            <input type="text" class="form-control" name="kelurahan" id="kelurahan" value="{{ $data->kelurahan }}" placeholder="">
+            <label class="text-normal text-dark" for="kelurahan">Kelurahan<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" name="kelurahan" id="kelurahan" required value="{{ $data->kelurahan }}" placeholder="">
           </div>
           <div class="form-group">
             <label class="text-normal text-dark" for="kecamatan">Kecamatan<span class="text-danger">*</span></label>
@@ -504,7 +504,7 @@
               <input class="form-check-input" type="checkbox" name="pernyataan" required id="pernyataan">
               <label class="form-check-label" for="pernyataan">
                 Saya menyatakan dengan sesungguhnya bahwa isian data dalam formulir ini adalah benar. Apabila ternyata data tersebut tidak benar / palsu, maka saya bersedia menerima sanksi sesuai ketentuan yang berlaku di SMP Negeri 1 Cikarang
-                Selatan
+                Utara
               </label>
             </div>
           </div>
@@ -520,20 +520,46 @@
 </div>
 @push('script')
   <script>
-    setInterval(() => {
-      console.log("Auto Save");
-      $values = $(".regist-form").serialize();
-      $.ajax({
-        url: "{{ route('add') }}/",
-        type: "post",
-        headers: {
-          "X-CSRF-TOKEN": $("[name='csrf-token']").attr("content")
-        },
-        data: $values,
-        success: function(response) {
-          console.log(response);
+    // Initialize and add the map
+    let alamat;
+    let kabupaten = document.querySelector("input[name=kabupaten]");
+    kabupaten.addEventListener("focusout", function() {
+      alamat = document.querySelector("input[name=kelurahan]").value + ', ' + document.querySelector("input[name=kecamatan]").value + ', ' + this.value;
+      if (this.value !== "") {
+        console.log(alamat);
+        initMap();
+      }
+    });
+
+    function initMap() {
+      // Add Distance Matrix here
+      const service = new google.maps.DistanceMatrixService(); // instantiate Distance Matrix service
+      const matrixOptions = {
+        origins: ["-6.254157508216003, 107.15667922397681"], // technician locations
+        destinations: [alamat], // customer address
+        travelMode: "DRIVING",
+        unitSystem: google.maps.UnitSystem.IMPERIAL,
+      };
+      // Call Distance Matrix service
+      service.getDistanceMatrix(matrixOptions, callback);
+
+      // Callback function used to process Distance Matrix response
+      function callback(response, status) {
+        if (status !== "OK") {
+          alert("Error with distance matrix");
+          return;
         }
-      });
-    }, 60000);
+        let waktu = document.querySelector("input[name=waktu_tempuh]"),
+          jarak = document.querySelector("input[name=jarak]");
+        console.log(response.rows[0]["elements"][0]);
+        if (response.rows[0]["elements"][0]["status"] === 'OK') {
+          jarak.value = Math.floor(response.rows[0]["elements"][0]["distance"]["value"] / 1000);
+          waktu.value = Math.floor(response.rows[0]["elements"][0]["duration"]["value"] / 60);
+          jarak.readOnly = true;;
+          waktu.readOnly = true;;
+        }
+      }
+    }
   </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYLYQua5g8CQ5IJx4ExpgkGJpTkMPq8WE"></script>
 @endpush

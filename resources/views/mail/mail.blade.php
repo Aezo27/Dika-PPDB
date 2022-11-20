@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="x-apple-disable-message-reformatting" />
-  <title>SMP Negeri 1 Cikarang Selatan</title>
+  <title>SMP Negeri 1 Cikarang Utara</title>
   <link rel="shortcut icon" href="{{ asset('assets/static/images/logo.png') }}" />
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet" />
@@ -381,7 +381,7 @@
           <td class="bg_light" style="text-align: center">
             <p>
               &copy; 2022
-              <a href="#">SMP NEGERI 1 CIKARANG Selatan</a>. All
+              <a href="#">SMP NEGERI 1 CIKARANG Utara</a>. All
               Rights Reserved.
             </p>
           </td>

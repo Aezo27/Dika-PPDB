@@ -9,7 +9,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }} - SMP Negeri 1 Cikarang Selatan</title>
+  <title>{{ config('app.name', 'Laravel') }} - SMP Negeri 1 Cikarang Utara</title>
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
@@ -41,7 +41,7 @@
               @if (Auth::user()->role == 0)
                 <a class="nav-link" href="{{ route('admin') }}">Beranda</a>
               @else
-                <a class="nav-link" href="https://smpn1cikarangselatan.sch.id/">Beranda</a>
+                <a class="nav-link" href=".">Beranda</a>
               @endif
             </li>
           </ul>
