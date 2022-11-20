@@ -68,29 +68,27 @@
           </div>
         @else
           @include('form')
+          @push('script')
+            <script>
+              setInterval(() => {
+                console.log("Auto Save");
+                $values = $(".regist-form").serialize();
+                $.ajax({
+                  url: "{{ route('add') }}/",
+                  type: "post",
+                  headers: {
+                    "X-CSRF-TOKEN": $("[name='csrf-token']").attr("content")
+                  },
+                  data: $values,
+                  success: function(response) {
+                    console.log(response);
+                  }
+                });
+              }, 60000);
+            </script>
+          @endpush
         @endif
       @endif
     </div>
   </div>
 @endsection
-@if (isset($cek_daftar) && $cek_daftar->draft == 0)
-  @push('script')
-    <script>
-      setInterval(() => {
-        console.log("Auto Save");
-        $values = $(".regist-form").serialize();
-        $.ajax({
-          url: "{{ route('add') }}/",
-          type: "post",
-          headers: {
-            "X-CSRF-TOKEN": $("[name='csrf-token']").attr("content")
-          },
-          data: $values,
-          success: function(response) {
-            console.log(response);
-          }
-        });
-      }, 60000);
-    </script>
-  @endpush
-@endif
