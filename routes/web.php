@@ -17,6 +17,10 @@ Route::get('/', function () {
   return redirect(route('login'));
 });
 
+Route::get('/foo', function () {
+  Artisan::call('storage:link');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

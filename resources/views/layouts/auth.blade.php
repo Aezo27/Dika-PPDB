@@ -109,7 +109,7 @@
         <div class="pos-r" style="width:180px;height:180px;margin:0 auto;">
           <img class="pos-a centerXY" style="max-width: 150px;" src="{{ asset('assets/static/images/logo.png') }}" alt="">
         </div>
-        <h1 class="smp">SMP NEGERI 1 CIKARANG SELATAN</h1>
+        <h1 class="smp">SMP NEGERI 1 CIKARANG UTARA</h1>
       </div>
     </div>
     @yield('content')

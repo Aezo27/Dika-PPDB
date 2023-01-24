@@ -37,10 +37,11 @@ class AdminController extends Controller
    */
   public function index()
   {
-    $user = User::where("role", "1")->count();
-    $pendaftar = Pendaftar::count();
+    $user = User::where("role", "1")->where("email_verified_at", "!=", null)->count();
+    $pendaftar = Pendaftar::where("draft", "0")->count();
+    $kuota = $setting = Setting::first()->kuota_pendaftar - Pendaftar::where("draft", "0")->count();
     $datas = Pendaftar::where("draft", "0")->whereDate('created_at', Carbon::today())->offset(0)->limit(10)->orderBy("created_at")->get();
-    return view('admin.index', compact("datas", "user", "pendaftar"));
+    return view('admin.index', compact("datas", "user", "pendaftar", "kuota"));
   }
 
   public function pendaftar()
@@ -63,7 +64,7 @@ class AdminController extends Controller
   public function get_pendaftar(Request $request)
   {
     if ($request->ajax()) {
-      $data = Pendaftar::orderby('nama')->get();
+      $data = Pendaftar::where("draft", "0")->orderby('nama')->get();
       return DataTables::of($data)
         ->addColumn('action', function ($data) {
           $button = '<a title="Edit data" href="' . route("edit") . '/' . $data->id . '" id="' . $data->id . '" id="' . $data->id . '" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil"></i></a>';

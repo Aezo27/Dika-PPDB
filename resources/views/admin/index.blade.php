@@ -44,7 +44,7 @@
                     <div class="layer w-100">
                       <div class="peers ai-sb fxw-nw">
                         <div class="peer peer-greed"><span id="sparklinedash3"></span></div>
-                        <div class="peer"><span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">~12%</span></div>
+                        <div class="peer"><span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">Sisa {{$kuota}}</span></div>
                       </div>
                     </div>
                   </div>

@@ -161,7 +161,7 @@
           </div>
           <div class="form-group">
             <label class="text-normal text-dark" for="pos">Kode Pos</label>
-            <input type="text" class="form-control" name="pos" id="pos" value="{{ $data->kodepos }}" placeholder="">
+            <input type="number" class="form-control" name="pos" id="pos" value="{{ $data->kodepos }}" placeholder="">
           </div>
           <div class="form-group">
             <label class="text-normal text-dark" for="tempat_tinggal">Tempat Tinggal</label>
@@ -183,7 +183,7 @@
               <option value="Jalan kaki" {{ $data->transportasi == 'Jalan kaki' ? 'selected' : '' }}>Jalan kaki</option>
               <option value="Jemputan Sekolah" {{ $data->transportasi == 'Jemputan Sekolah' ? 'selected' : '' }}>Jemputan Sekolah</option>
               <option value="Kendaraan pribadi" {{ $data->transportasi == 'Kendaraan pribadi' ? 'selected' : '' }}>Kendaraan pribadi</option>
-              <option value="Kendaraan Umum / angkot / Pete-pete" {{ $data->transportasi == 'Kendaraan Umum / angkot / Pete-pete' ? 'selected' : '' }}>Kendaraan Umum / angkot / Pete-pete</option>
+              <option value="Kendaraan Umum / angkot / Pete-pete" {{ $data->transportasi == 'Kendaraan Umum / angkot / Pete-pete' ? 'selected' : '' }}>Kendaraan Umum / Angkot</option>
               <option value="Kereta Api" {{ $data->transportasi == 'Kereta Api' ? 'selected' : '' }}>Kereta Api</option>
               <option value="Ojek" {{ $data->transportasi == 'Ojek' ? 'selected' : '' }}>Ojek</option>
               <option value="Perahu penyebrangan / Rakit / Getek" {{ $data->transportasi == 'Perahu penyebrangan / Rakit / Getek' ? 'selected' : '' }}>Perahu penyebrangan / Rakit / Getek</option>
