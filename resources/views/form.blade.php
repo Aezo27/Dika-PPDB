@@ -8,6 +8,7 @@
     </div>
     <div class="card-body">
       <form method="POST" action="{{ route('add') }}" enctype='multipart/form-data' class="regist-form">
+        <input type="hidden" name="id" value="{{ $id }}">
         @csrf
         <div class="form-part">
           <h2 class="mb-0">Registrasi Peserta Didik</h2>

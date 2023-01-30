@@ -64,7 +64,7 @@ class AdminController extends Controller
   public function get_pendaftar(Request $request)
   {
     if ($request->ajax()) {
-      $data = Pendaftar::where("draft", "0")->orderby('nama')->get();
+      $data = Pendaftar::orderby('nama')->get();
       return DataTables::of($data)
         ->addColumn('action', function ($data) {
           $button = '<a title="Edit data" href="' . route("edit") . '/' . $data->id . '" id="' . $data->id . '" id="' . $data->id . '" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil"></i></a>';

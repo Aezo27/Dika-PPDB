@@ -47,22 +47,23 @@ class HomeController extends Controller
     $cek_daftar = Regist::where('user_id', Auth::user()->id)->first();
     $data = Pendaftar::where('id', Auth::user()->id)->first();
     $setting = Setting::first();
+    $id = Auth::user()->id;
     if ($setting->status_pendaftaran == '0' && Auth::user()->role == '1') {
       return redirect(route('home'));
     } else {
-      return view('edit', compact('cek_daftar', 'data'));
+      return view('edit', compact('cek_daftar', 'data', 'id'));
     }
   }
   public function edit_admin($id)
   {
     $cek_daftar = Regist::where('user_id', $id)->first();
     $data = Pendaftar::where('id', $id)->first();
-    return view('edit', compact('cek_daftar', 'data'));
+    return view('edit', compact('cek_daftar', 'data', 'id'));
   }
   public function add(Request $req)
   {
     DB::beginTransaction();
-    $cek = Regist::where('user_id', Auth::user()->id)->first();
+    $cek = Regist::where('user_id', $req->id)->first();
     if ($req->ajax()) {
       $draft = "1";
     } else {
@@ -176,8 +177,8 @@ class HomeController extends Controller
         );
         return redirect(route("home"));
       } else {
-        $regist = Regist::where('user_id', Auth::user()->id)->firstOrFail();
-        $regist->user_id   =  Auth::user()->id;
+        $regist = Regist::where('user_id', $req->id)->firstOrFail();
+        $regist->user_id   =  $req->id;
         $regist->jenis_pendaftaran   =  $req->jenis;
         $regist->asal_sekolah   =  $req->asal_sekolah;
         $regist->alamat_sekolah  =  $req->alamat_sekolah;
@@ -194,8 +195,8 @@ class HomeController extends Controller
         }
         $regist->save();
 
-        $peserta = DataPeserta::where('user_id', Auth::user()->id)->firstOrFail();
-        $peserta->user_id   =  Auth::user()->id;
+        $peserta = DataPeserta::where('user_id', $req->id)->firstOrFail();
+        $peserta->user_id   =  $req->id;
         $peserta->nama = $req->nama;
         $peserta->jenis_kelamin = $req->jk;
         $peserta->nisn = $req->nisn;
@@ -224,15 +225,15 @@ class HomeController extends Controller
         $peserta->negara_asal = $req->negara;
         if ($req->file('foto') != null) {
           File::delete(storage_path('app/public') . '/' . $peserta->foto);
-          $name = Auth::user()->id;
+          $name = $req->id;
           $img = Carbon::now()->year . '/' . $name . '.' . $req->file('foto')->extension();
           $req->file('foto')->storeAs('public/', $img);
           $peserta->foto = $img;
         }
         $peserta->save();
 
-        $ayah = Ayah::where('user_id', Auth::user()->id)->firstOrFail();
-        $ayah->user_id   =  Auth::user()->id;
+        $ayah = Ayah::where('user_id', $req->id)->firstOrFail();
+        $ayah->user_id   =  $req->id;
         $ayah->nama = $req->nama_ayah;
         $ayah->tahun_lahir = $req->lahir_ayah;
         $ayah->pendidikan = $req->pendidikan_ayah;
@@ -241,8 +242,8 @@ class HomeController extends Controller
         $ayah->kebutuhan_khusus = $req->kebutuhan_khusus_ayah;
         $ayah->save();
 
-        $ibu = Ibu::where('user_id', Auth::user()->id)->firstOrFail();
-        $ibu->user_id   =  Auth::user()->id;
+        $ibu = Ibu::where('user_id', $req->id)->firstOrFail();
+        $ibu->user_id   =  $req->id;
         $ibu->nama = $req->nama_ibu;
         $ibu->tahun_lahir = $req->lahir_ibu;
         $ibu->pendidikan = $req->pendidikan_ibu;
@@ -251,8 +252,8 @@ class HomeController extends Controller
         $ibu->kebutuhan_khusus = $req->kebutuhan_khusus_ibu;
         $ibu->save();
 
-        $wali = Wali::where('user_id', Auth::user()->id)->firstOrFail();
-        $wali->user_id   =  Auth::user()->id;
+        $wali = Wali::where('user_id', $req->id)->firstOrFail();
+        $wali->user_id   =  $req->id;
         $wali->nama = $req->nama_wali;
         $wali->tahun_lahir = $req->lahir_wali;
         $wali->pendidikan = $req->pendidikan_wali;
@@ -260,8 +261,8 @@ class HomeController extends Controller
         $wali->penghasilan = $req->penghasilan_wali;
         $wali->save();
 
-        $periodik = Periodik::where('user_id', Auth::user()->id)->firstOrFail();
-        $periodik->user_id   =  Auth::user()->id;
+        $periodik = Periodik::where('user_id', $req->id)->firstOrFail();
+        $periodik->user_id   =  $req->id;
         $periodik->tinggi = $req->tb;
         $periodik->berat = $req->bb;
         $periodik->jarak = $req->jarak;
@@ -276,7 +277,11 @@ class HomeController extends Controller
             'alert'     => 'success'
           ];
         } else {
-          return redirect(route("home"));
+          if (Auth::user()->role == '1') {
+            return redirect(route("home"));
+          } else {
+            return redirect(route('pendaftar'));
+          }
         }
       }
     } catch (\Exception $e) {
