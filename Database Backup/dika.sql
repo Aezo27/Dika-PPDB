@@ -3,15 +3,15 @@
 
  Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 100421
+ Source Server Version : 100427
  Source Host           : localhost:3306
  Source Schema         : dika
 
  Target Server Type    : MySQL
- Target Server Version : 100421
+ Target Server Version : 100427
  File Encoding         : 65001
 
- Date: 09/11/2022 13:09:04
+ Date: 30/01/2023 20:13:45
 */
 
 SET NAMES utf8mb4;
@@ -33,13 +33,14 @@ CREATE TABLE `ayahs`  (
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ayahs
 -- ----------------------------
 INSERT INTO `ayahs` VALUES (3, 4, 'Suhariyono', 1960, 'D4/S1', 'Pedagang Besar', 'Kurang dari 500,000', 'Tidak', '2022-10-02 23:35:44', '2022-10-06 00:20:46');
-INSERT INTO `ayahs` VALUES (10, 7, 'Asdasd', NULL, NULL, NULL, NULL, 'Lainnya', '2022-10-20 16:18:26', '2022-10-20 16:18:26');
+INSERT INTO `ayahs` VALUES (10, 7, 'Asdasd', NULL, NULL, NULL, NULL, 'Tidak', '2022-10-20 16:18:26', '2023-01-30 19:23:22');
+INSERT INTO `ayahs` VALUES (11, 1, 'Asdasd', NULL, NULL, NULL, NULL, 'Tidak', '2023-01-30 19:06:56', '2023-01-30 19:07:55');
 
 -- ----------------------------
 -- Table structure for data_pesertas
@@ -75,16 +76,19 @@ CREATE TABLE `data_pesertas`  (
   `warga_negara` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
   `negara_asal` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `foto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `ijazah_depan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `ijazah_belakang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_pesertas
 -- ----------------------------
-INSERT INTO `data_pesertas` VALUES (3, 4, 'Rama', '0', '345345345345', '3314170609990005', 'Sragen', '1999-09-06', 'Islam', 'Tidak', 'Sukodono', '3', '2', 'Bangunrejo', 'Baleharjo', 'Sukodono', 'Sragen', '57263', 'Bersama orang tua', 'Jalan kaki', '082134626598', 'stillhopeyou@gmail.com', '2342345235', '23423423', '2342342', '23423562462', '1', 'Jepang', '2022/4.png', '2022-10-02 23:35:44', '2022-10-06 22:28:13');
-INSERT INTO `data_pesertas` VALUES (10, 7, 'Rahma', '0', '9994974913', '3314170609990005', 'Sragen', '2022-10-20', 'Islam', 'Lainnya', 'Sukodono', NULL, NULL, NULL, NULL, 'Sukodono', 'Sragen', '57263', 'Wali', NULL, '082134626598', 'admin@odama.io', NULL, NULL, NULL, NULL, '0', NULL, '2022/7.jpg', '2022-10-20 16:18:26', '2022-10-20 16:18:26');
+INSERT INTO `data_pesertas` VALUES (3, 4, 'Rama', '0', '345345345345', '3314170609990005', 'Sragen', '1999-09-06', 'Islam', 'Tidak', 'Sukodono', '3', '2', 'Bangunrejo', 'Baleharjo', 'Sukodono', 'Sragen', '57263', 'Bersama orang tua', 'Jalan kaki', '082134626598', 'stillhopeyou@gmail.com', '2342345235', '23423423', '2342342', '23423562462', '1', 'Jepang', '2023/4.png', '2023/4_ijazah_belakang.png', '2023/4._ijazah_belakangpng', '2022-10-02 23:35:44', '2023-01-30 20:02:20');
+INSERT INTO `data_pesertas` VALUES (10, 7, 'Rahma', '0', '9994974913', '3314170609990005', 'Sragen', '2022-10-20', 'Islam', 'Tidak', 'Sukodono', NULL, NULL, NULL, 'Baleharjo', 'Sukodono', 'Sragen', '57263', NULL, NULL, '082134626598', 'admin@odama.io', NULL, NULL, NULL, NULL, '0', NULL, '2022/7.jpg', '2023/7.png', '2023/7.jpg', '2022-10-20 16:18:26', '2023-01-30 19:58:27');
+INSERT INTO `data_pesertas` VALUES (11, 1, 'Rahma', '0', '9994974913', '3314170609990005', 'Sragen', '2022-10-20', 'Islam', 'Tidak', 'Sukodono', NULL, NULL, NULL, 'Karanganom', 'Sukodono', 'Sragen', '57263', 'Wali', NULL, '082134626598', 'admin@odama.io', NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, NULL, '2023-01-30 19:06:56', '2023-01-30 19:34:38');
 
 -- ----------------------------
 -- Table structure for failed_jobs
@@ -100,7 +104,7 @@ CREATE TABLE `failed_jobs`  (
   `failed_at` timestamp(0) NOT NULL DEFAULT current_timestamp(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `failed_jobs_uuid_unique`(`uuid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of failed_jobs
@@ -122,13 +126,14 @@ CREATE TABLE `ibus`  (
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ibus
 -- ----------------------------
 INSERT INTO `ibus` VALUES (5, 4, 'taryati', 1970, 'D3', 'Karyawan Swasta', '5 Juta - 20 Juta', 'Tidak', '2022-10-02 23:35:44', '2022-10-06 00:20:46');
-INSERT INTO `ibus` VALUES (13, 7, 'Fgsdfgsdf', NULL, NULL, NULL, NULL, 'Lainnya', '2022-10-20 16:18:26', '2022-10-20 16:18:26');
+INSERT INTO `ibus` VALUES (13, 7, 'Fgsdfgsdf', NULL, NULL, NULL, NULL, 'Tidak', '2022-10-20 16:18:26', '2023-01-30 19:23:22');
+INSERT INTO `ibus` VALUES (14, 1, 'Fgsdfgsdf', NULL, NULL, NULL, NULL, 'Tidak', '2023-01-30 19:06:56', '2023-01-30 19:07:55');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -139,7 +144,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of migrations
@@ -158,7 +163,7 @@ CREATE TABLE `password_resets`  (
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   INDEX `password_resets_email_index`(`email`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of password_resets
@@ -179,13 +184,14 @@ CREATE TABLE `periodiks`  (
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of periodiks
 -- ----------------------------
 INSERT INTO `periodiks` VALUES (1, 4, 160, 60, 5, 10, 2, '2022-10-02 23:35:44', '2022-10-02 23:35:44');
 INSERT INTO `periodiks` VALUES (8, 7, NULL, NULL, 10, NULL, NULL, '2022-10-20 16:18:26', '2022-10-20 16:18:26');
+INSERT INTO `periodiks` VALUES (9, 1, NULL, NULL, 10, NULL, NULL, '2023-01-30 19:06:56', '2023-01-30 19:07:55');
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -204,7 +210,7 @@ CREATE TABLE `personal_access_tokens`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `personal_access_tokens_token_unique`(`token`) USING BTREE,
   INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type`, `tokenable_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of personal_access_tokens
@@ -231,13 +237,14 @@ CREATE TABLE `regists`  (
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of regists
 -- ----------------------------
-INSERT INTO `regists` VALUES (8, 4, '0', 'SDN Baleharjo 2', 'Sukodono', '34534534', '0', '0', '34534534', '34534534', 'gaada', 'kaya', '0', '2022-10-06 22:58:03', '2022-10-06 22:58:03');
-INSERT INTO `regists` VALUES (31, 7, '0', NULL, 'Sukodono', NULL, '0', '0', NULL, NULL, NULL, NULL, '0', '2022-10-20 16:18:26', '2022-10-20 16:18:26');
+INSERT INTO `regists` VALUES (8, 4, '0', 'SDN Baleharjo 2', 'Sukodono', '34534534', '0', '0', NULL, '34534534', 'gaada', 'kaya', '0', '2022-10-06 22:58:03', '2023-01-30 19:59:58');
+INSERT INTO `regists` VALUES (31, 7, '0', 'Majenang', 'Sukodono', NULL, '0', '0', NULL, NULL, NULL, NULL, '0', '2022-10-20 16:18:26', '2023-01-30 19:37:06');
+INSERT INTO `regists` VALUES (32, 1, '0', 'Majenang', 'Sukodono', NULL, '0', '0', NULL, NULL, NULL, NULL, '0', '2023-01-30 19:06:56', '2023-01-30 19:34:38');
 
 -- ----------------------------
 -- Table structure for settings
@@ -252,7 +259,7 @@ CREATE TABLE `settings`  (
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of settings
@@ -275,14 +282,14 @@ CREATE TABLE `users`  (
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'admin', 'ramasullivan27@gmail.com', '2022-10-19 10:37:13', '$2y$10$Z/tUvRBwCHnMnah2Fpjn2ufWOI8D//NmuKWd8dcBahdbZ77Xc3Fjy', '0', 'W5GP39Gj9S8ba0rJ8KoZLO99XZdoSJ7Es4WpWWUNsSz66npwJvEZY8m2YHSx', '2022-07-18 06:52:14', '2022-07-18 06:52:14');
-INSERT INTO `users` VALUES (4, 'MrPrince27', 'stillhopeyou@gmail.com', '2022-07-18 15:27:01', '$2y$10$Z/tUvRBwCHnMnah2Fpjn2ufWOI8D//NmuKWd8dcBahdbZ77Xc3Fjy', '1', 'Jel67aai8BktNiiT9CJdDSmR9ovwzEiubSziigaqgmkGZ3PTGVeYGix8Y7uE', '2022-07-18 07:16:08', '2022-07-18 15:25:49');
-INSERT INTO `users` VALUES (7, 'XRhyme', 'admin@odama.io', '2022-10-20 16:06:24', '$2y$10$WAhcA/xsqfOTi7kJqT9DGOARSd.dh6VVepPbB0kdeUdWS5tRpM4da', '1', NULL, '2022-10-20 16:03:22', '2022-10-20 16:03:22');
+INSERT INTO `users` VALUES (1, 'admin', 'admin@gmail.com', '2022-10-19 17:37:13', '$2y$10$Z/tUvRBwCHnMnah2Fpjn2ufWOI8D//NmuKWd8dcBahdbZ77Xc3Fjy', '0', 'W5GP39Gj9S8ba0rJ8KoZLO99XZdoSJ7Es4WpWWUNsSz66npwJvEZY8m2YHSx', '2022-07-18 13:52:14', '2022-07-18 13:52:14');
+INSERT INTO `users` VALUES (4, 'MrPrince27', 'stillhopeyou@gmail.com', '2022-07-18 22:27:01', '$2y$10$Z/tUvRBwCHnMnah2Fpjn2ufWOI8D//NmuKWd8dcBahdbZ77Xc3Fjy', '1', 'Jel67aai8BktNiiT9CJdDSmR9ovwzEiubSziigaqgmkGZ3PTGVeYGix8Y7uE', '2022-07-18 14:16:08', '2022-07-18 22:25:49');
+INSERT INTO `users` VALUES (7, 'XRhyme', 'admin@odama.io', '2022-10-20 23:06:24', '$2y$10$WAhcA/xsqfOTi7kJqT9DGOARSd.dh6VVepPbB0kdeUdWS5tRpM4da', '1', NULL, '2022-10-20 23:03:22', '2022-10-20 23:03:22');
 
 -- ----------------------------
 -- Table structure for walis
@@ -299,13 +306,14 @@ CREATE TABLE `walis`  (
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of walis
 -- ----------------------------
 INSERT INTO `walis` VALUES (6, 4, 'Uyeee', 1965, 'D3', 'Karyawan Swasta', 'Kurang dari 500,000', '2022-10-02 23:39:23', '2022-10-07 17:15:56');
-INSERT INTO `walis` VALUES (13, 7, '', NULL, NULL, NULL, NULL, '2022-10-20 16:18:26', '2022-10-20 16:18:26');
+INSERT INTO `walis` VALUES (13, 7, NULL, NULL, NULL, NULL, NULL, '2022-10-20 16:18:26', '2023-01-30 19:23:22');
+INSERT INTO `walis` VALUES (14, 1, NULL, NULL, NULL, NULL, NULL, '2023-01-30 19:06:56', '2023-01-30 19:07:55');
 
 -- ----------------------------
 -- View structure for pendaftars
@@ -313,7 +321,7 @@ INSERT INTO `walis` VALUES (13, 7, '', NULL, NULL, NULL, NULL, '2022-10-20 16:18
 DROP VIEW IF EXISTS `pendaftars`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `pendaftars` AS SELECT
 	users.id, 
-	users.`name`, 
+	users.`name` AS username, 
 	users.email, 
 	regists.jenis_pendaftaran, 
 	regists.asal_sekolah, 
@@ -325,7 +333,7 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `pendaftars` AS SELECT
 	regists.no_ijazah, 
 	regists.hobi, 
 	regists.cita_cita, 
-	data_pesertas.nama, 
+	data_pesertas.nama AS nama, 
 	data_pesertas.jenis_kelamin, 
 	data_pesertas.nisn, 
 	data_pesertas.nik, 
@@ -375,7 +383,9 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `pendaftars` AS SELECT
 	periodiks.waktu_tempuh, 
 	periodiks.saudara, 
 	regists.draft, 
-	regists.created_at
+	regists.created_at, 
+	data_pesertas.ijazah_depan, 
+	data_pesertas.ijazah_belakang
 FROM
 	users
 	LEFT JOIN

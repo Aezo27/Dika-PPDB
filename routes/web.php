@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +36,7 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->na
 Route::get('/admin/pendaftar', [App\Http\Controllers\AdminController::class, 'pendaftar'])->name('pendaftar');
 Route::get('/admin/pendaftar/get-pendaftar', [App\Http\Controllers\AdminController::class, 'get_pendaftar'])->name('get_pendaftar');
 Route::get('/admin/pendaftar/download/{id}', [App\Http\Controllers\AdminController::class, 'download_pendaftar'])->name('download_pendaftar');
+Route::get('/admin/pendaftar/lihat_ijazah/{id}', [App\Http\Controllers\AdminController::class, 'lihat_ijazah'])->name('lihat_ijazah');
 Route::get('/admin/user', [App\Http\Controllers\AdminController::class, 'user'])->name('user');
 Route::get('/admin/user/get-user', [App\Http\Controllers\AdminController::class, 'get_user'])->name('get_user');
 Route::post('/admin/user/del-user', [App\Http\Controllers\AdminController::class, 'user_delete'])->name('user_delete');

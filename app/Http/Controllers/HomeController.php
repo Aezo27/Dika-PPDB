@@ -79,7 +79,7 @@ class HomeController extends Controller
         $regist->no_un   =  $req->no_un;
         $regist->paud   =  $req->paud;
         $regist->tk   =  $req->tk;
-        $regist->no_skhu   =  $req->no_skhu;
+        $regist->no_skhu   =  null;
         $regist->no_ijazah   =  $req->no_ijazah;
         $regist->hobi   =  $req->hobi;
         $regist->cita_cita   =  $req->cita_cita;
@@ -121,7 +121,23 @@ class HomeController extends Controller
         } else {
           $img = null;
         }
+        if ($req->file('ijazah_depan') != null) {
+          $name = Auth::user()->id;
+          $img2 = Carbon::now()->year . '/' . $name . '_ijazah_depan.' . $req->file('ijazah_depan')->extension();
+          $req->file('ijazah_depan')->storeAs('public/', $img);
+        } else {
+          $img2 = null;
+        }
+        if ($req->file('ijazah_belakang') != null) {
+          $name = Auth::user()->id;
+          $img3 = Carbon::now()->year . '/' . $name . '_ijazahbelakang.' . $req->file('ijazah_belakang')->extension();
+          $req->file('ijazah_belakang')->storeAs('public/', $img);
+        } else {
+          $img3 = null;
+        }
         $peserta->foto = $img;
+        $peserta->ijazah_depan = $img2;
+        $peserta->ijazah_belakang = $img3;
         $peserta->save();
 
         $ayah = new Ayah();
@@ -185,7 +201,7 @@ class HomeController extends Controller
         $regist->no_un   =  $req->no_un;
         $regist->paud   =  $req->paud;
         $regist->tk   =  $req->tk;
-        $regist->no_skhu   =  $req->no_skhu;
+        $regist->no_skhu   =  null;
         $regist->no_ijazah   =  $req->no_ijazah;
         $regist->hobi   =  $req->hobi;
         $regist->cita_cita   =  $req->cita_cita;
@@ -229,6 +245,20 @@ class HomeController extends Controller
           $img = Carbon::now()->year . '/' . $name . '.' . $req->file('foto')->extension();
           $req->file('foto')->storeAs('public/', $img);
           $peserta->foto = $img;
+        }
+        if ($req->file('ijazah_depan') != null) {
+          File::delete(storage_path('app/public') . '/' . $peserta->ijazah_depan);
+          $name = $req->id;
+          $img2 = Carbon::now()->year . '/' . $name . '_ijazah_depan.' . $req->file('ijazah_depan')->extension();
+          $req->file('ijazah_depan')->storeAs('public/', $img2);
+          $peserta->ijazah_depan = $img2;
+        }
+        if ($req->file('ijazah_belakang') != null) {
+          File::delete(storage_path('app/public') . '/' . $peserta->ijazah_belakang);
+          $name = $req->id;
+          $img3 = Carbon::now()->year . '/' . $name . '._ijazah_belakang' . $req->file('ijazah_belakang')->extension();
+          $req->file('ijazah_belakang')->storeAs('public/', $img3);
+          $peserta->ijazah_belakang = $img3;
         }
         $peserta->save();
 

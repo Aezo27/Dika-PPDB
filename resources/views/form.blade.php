@@ -48,10 +48,10 @@
               <option value="1" {{ $data->tk == 1 ? 'selected' : '' }}>Tidak</option>
             </select>
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label class="text-normal text-dark" for="no_skhu">Nomor Seri SKHUN Sebelumnya</label>
           </div>
-          <input type="text" class="form-control" name="no_skhu" id="no_skhu" value="{{ $data->no_skhu }}" placeholder="Nomor Surat Keterangan Hasil Ujian Nasional">
+          <input type="text" class="form-control" name="no_skhu" id="no_skhu" value="{{ $data->no_skhu }}" placeholder="Nomor Surat Keterangan Hasil Ujian Nasional"> --}}
           <div class="form-group">
             <label class="text-normal text-dark" for="no_ijazah">Nomor Seri Ijazah Sebelumnya</label>
           </div>
@@ -241,6 +241,38 @@
               <input type="file" style="text-transform: none" class="form-control" name="foto" id="foto">
             @else
               <input type="file" style="text-transform: none" class="form-control" required name="foto" id="foto">
+            @endif
+          </div>
+          @if ($data->ijazah_depan != null)
+            <div class="form-group">
+              <label class="text-normal text-dark" for="foto">Ijazah Depan Sebelumnya</label>
+              <div class="photo">
+                <img src="{{ asset('storage') . '/' . $data->ijazah_depan }}" alt="">
+              </div>
+            </div>
+          @endif
+          <div class="form-group">
+            <label class="text-normal text-dark" for="ijazah_depan">Ijazah Depan<span class="text-danger">*</span></label>
+            @if (isset($cek_daftar) && $cek_daftar->draft == 0)
+              <input type="file" style="text-transform: none" class="form-control" name="ijazah_depan" id="ijazah_depan">
+            @else
+              <input type="file" style="text-transform: none" class="form-control" required name="ijazah_depan" id="ijazah_depan">
+            @endif
+          </div>
+          @if ($data->ijazah_belakang != null)
+            <div class="form-group">
+              <label class="text-normal text-dark" for="foto">Ijazah Belakang Sebelumnya</label>
+              <div class="photo">
+                <img src="{{ asset('storage') . '/' . $data->ijazah_belakang }}" alt="">
+              </div>
+            </div>
+          @endif
+          <div class="form-group">
+            <label class="text-normal text-dark" for="ijazah_belakang">Ijazah Belakang<span class="text-danger">*</span></label>
+            @if (isset($cek_daftar) && $cek_daftar->draft == 0)
+              <input type="file" style="text-transform: none" class="form-control" name="ijazah_belakang" id="ijazah_belakang">
+            @else
+              <input type="file" style="text-transform: none" class="form-control" required name="ijazah_belakang" id="ijazah_belakang">
             @endif
           </div>
         </div>

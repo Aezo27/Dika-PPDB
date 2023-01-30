@@ -54,6 +54,11 @@ class AdminController extends Controller
     $data = Pendaftar::where('id', $id)->first();
     return view('admin.download_data', compact('data'));
   }
+  public function lihat_ijazah($id)
+  {
+    $data = Pendaftar::where('id', $id)->first();
+    return view('admin.lihat_ijazah', compact('data'));
+  }
 
   public function setting()
   {
@@ -69,6 +74,7 @@ class AdminController extends Controller
         ->addColumn('action', function ($data) {
           $button = '<a title="Edit data" href="' . route("edit") . '/' . $data->id . '" id="' . $data->id . '" id="' . $data->id . '" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil"></i></a>';
           $button .= '<a title="Download data" target="_blank" href="' . route("download_pendaftar", ['id' => $data->id]) . '" class="btn btn-simple btn-danger btn-icon view"><i class="ti-eye"></i></a>';
+          $button .= '<a title="Lihat Ijazah" target="_blank" href="' . route("lihat_ijazah", ['id' => $data->id]) . '" class="btn btn-simple btn-danger btn-icon view"><i class="ti-book"></i></a>';
           return $button;
         })
         ->addColumn('created_at', function ($data) {
